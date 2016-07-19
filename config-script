@@ -1,0 +1,12 @@
+#!/bin/sh
+exec scala -classpath "scala/config-lib.jar" "$0" "$@"
+!#
+
+import config.api._
+
+val resources = Seq(
+	ResourceBuilder("Terminator") := "terminator.conf" =>> "~/.config/terminator/config",
+	ResourceBuilder("Xresources") := "xresources.conf" =>> "~/.Xresources"
+)
+
+resources(1).install
